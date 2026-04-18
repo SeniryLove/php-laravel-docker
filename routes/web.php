@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\OAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/auth/{provider}/redirect', [OAuthController::class, 'handleProviderRedirect']);
+

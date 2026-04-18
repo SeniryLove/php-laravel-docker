@@ -8,9 +8,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
-    | default location for this type of information, allowing packages
-    | to have a conventional place to find your various credentials.
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
     |
     */
 
@@ -29,19 +29,31 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('BACKEND_URL', 'http://localhost:8000') . '/api/auth/google/callback',
+    ],
+    
+    'line' => [
+        'client_id' => env('LINE_CLIENT_ID'),
+        'client_secret' => env('LINE_CLIENT_SECRET'),
+        'redirect' => env('BACKEND_URL', 'http://localhost:8000') . '/api/auth/line/callback',
+    ],
+    
+    'ecpay' => [
+        'merchant_id' => env('ECPAY_MERCHANT_ID'),
+        'hash_key' => env('ECPAY_HASH_KEY'),
+        'hash_iv' => env('ECPAY_HASH_IV'),
+        'url' => env('ECPAY_URL'),
+        'callback_url' => env('ECPAY_RETURN_URL'),
+        'order_result_url' => env('ECPAY_ORDER_RESULT_URL'),
     ],
 
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
-        'webhook' => [
-            'secret' => env('STRIPE_WEBHOOK_SECRET'),
-            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
-        ],
+    'linepay' => [
+        'channel_id' => env('LINEPAY_CHANNEL_ID'),
+        'channel_secret' => env('LINEPAY_CHANNEL_SECRET'),
+        'url' => env('LINEPAY_URL'),
+        
     ],
-
 ];
